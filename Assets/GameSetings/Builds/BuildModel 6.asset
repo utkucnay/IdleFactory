@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 222c4d9426ae67f45a5d377e4ff3d2c5, type: 3}
-  m_Name: BuildModel 1
+  m_Name: BuildModel 6
   m_EditorClassIdentifier: 
-  sName: Human
-  image: {fileID: 21300000, guid: c70bbe41d67fff446ba390bc9ba8070e, type: 3}
+  sName: Flag
+  image: {fileID: 21300000, guid: 4bef0757f4253fc4e97b3fcd91d870c4, type: 3}
   resourceCost:
-    gold: 1
-    gem: 0
+    gold: 3
+    gem: 2
   resourceGenerationDuration: 2
   resourceGain:
     gold: 0
     gem: 0
-  buildType: 1
+  buildPrefab: {fileID: 5408894915903133826, guid: 1aa69d3017d813148a1aeede14928028, type: 3}

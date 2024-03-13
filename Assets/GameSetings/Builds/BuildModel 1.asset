@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 222c4d9426ae67f45a5d377e4ff3d2c5, type: 3}
-  m_Name: BuildModel 3
+  m_Name: BuildModel 1
   m_EditorClassIdentifier: 
-  sName: House
-  image: {fileID: 21300000, guid: 30b4a8d2d8eb2564f8f57674c744939c, type: 3}
+  sName: Human
+  image: {fileID: 21300000, guid: c70bbe41d67fff446ba390bc9ba8070e, type: 3}
   resourceCost:
-    gold: 3
-    gem: 2
+    gold: 1
+    gem: 0
   resourceGenerationDuration: 2
   resourceGain:
     gold: 0
     gem: 0
-  buildType: 1
+  buildPrefab: {fileID: 5966417436254858224, guid: 9a7016d75681c9d40a25c843c7ef78cf, type: 3}
