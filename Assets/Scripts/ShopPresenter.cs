@@ -43,6 +43,7 @@ public class ShopPresenter : MonoBehaviour
     private void SetCardViewData(CardView cardView, BuildModel buildModel)
     {
         cardView.SetSprite(buildModel.Image);
+        cardView.SetBuildName(buildModel.SName);
         cardView.SetResourceCost(buildModel.ResourceCost);
     }
 

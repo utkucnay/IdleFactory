@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    private Tile up;
-    private Tile down;
-    private Tile left;
-    private Tile right;
+    [SerializeField] protected Tile up;
+    [SerializeField] protected Tile down;
+    [SerializeField] protected Tile left;
+    [SerializeField] protected Tile right;
 
     public Tile Up { get => up; set => up = value; }
     public Tile Down { get => down; set => down = value; }

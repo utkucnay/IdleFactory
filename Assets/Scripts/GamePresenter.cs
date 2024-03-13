@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Zenject;
 
-public class GamePresenter : IInitializable
+public class GamePresenter : Zenject.IInitializable
 {
     //Presenter
     ShopPresenter shopPresenter;
@@ -16,13 +17,25 @@ public class GamePresenter : IInitializable
     //View
     ResourceView resourceView;
 
-    bool Dragging = false;
+    IDragAndDrop dragAndDrop;
+    Dictionary<string, BuildModel> buildModels;
 
-    public GamePresenter(ResourceView resourceView, ResourceModel resourceModel, ShopPresenter shopPresenter)
+    public GamePresenter(ResourceView resourceView, ResourceModel resourceModel, 
+        ShopPresenter shopPresenter, TilePresenter tilePresenter, BuildModels6 buildModels6)
     {
         this.resourceView = resourceView;
         this.resourceModel = resourceModel;
         this.shopPresenter = shopPresenter; 
+        this.tilePresenter = tilePresenter;
+
+        buildModels = new();
+        buildModels.Add(buildModels6.buildModel1.SName, buildModels6.buildModel1);
+        buildModels.Add(buildModels6.buildModel2.SName, buildModels6.buildModel2);
+        buildModels.Add(buildModels6.buildModel3.SName, buildModels6.buildModel3);
+        buildModels.Add(buildModels6.buildModel4.SName, buildModels6.buildModel4);
+        buildModels.Add(buildModels6.buildModel5.SName, buildModels6.buildModel5);
+        buildModels.Add(buildModels6.buildModel6.SName, buildModels6.buildModel6);
+
     }
 
     private void OnResourceChanged() 
@@ -45,34 +58,31 @@ public class GamePresenter : IInitializable
 
     public void OnDragBegin(CardView cardView, PointerEventData eventData)
     {
-        //Get Builder ID
-        //Spawn It!
-        Dragging = true;
+        dragAndDrop = new SpawnDragAndDrop(buildModels[cardView.BuildName].BuildPrefab, tilePresenter);
+        dragAndDrop.OnDragBegin(eventData);
     }
 
     public void OnDrag(CardView cardView, PointerEventData eventData)
     {
-        //Check in Tile or not
-        //if not Sync Mouse Pos
-        //or sync pos with Tile
+        dragAndDrop.OnDrag(eventData);
     }
 
     public void OnDragEnd(CardView cardView, PointerEventData eventData)
     {
-        //Check is a valid tile.
-        Dragging = false;
-        cardView.ScaleDown();
+        cardView.ScaleNormal();
+        dragAndDrop.OnDragEnd(eventData);
+        dragAndDrop = null;
     }
 
     public void OnPointerEnter(CardView cardView)
     {
-        if(Dragging) return;
+        if(dragAndDrop != null) return;
         cardView.ScaleUp();
     }
 
     public void OnPointerExit(CardView cardView)
     {
-        if(Dragging) return;
-        cardView.ScaleDown();
+        if(dragAndDrop != null) return;
+        cardView.ScaleNormal();
     }
 }

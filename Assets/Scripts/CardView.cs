@@ -17,13 +17,15 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public event Action<CardView> PointerExit;
 
     private CardViewAnimation cvAnimation;
-    private int BuildID;
+    private string buildName;
     [SerializeField] private Image image;
     [SerializeField] private GameObject gemGO;
     [SerializeField] private GameObject columnGO;
     [SerializeField] private GameObject goldGO;
     [SerializeField] private TextMeshProUGUI gemReq;
     [SerializeField] private TextMeshProUGUI goldReq;
+
+    public string BuildName => buildName;
 
     [Inject()]
     private void Inject(CardViewAnimation cardViewAnimation)
@@ -61,7 +63,7 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         transform.DOScale(1f + cvAnimation.scaleFactor, cvAnimation.enterTime).SetEase(cvAnimation.enterScaleEase);
     }
 
-    public void ScaleDown()
+    public void ScaleNormal()
     {
         transform.DOScale(1f, cvAnimation.exitTime).SetEase(cvAnimation.exitScaleEase);
     }
@@ -69,6 +71,11 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void SetSprite(Sprite sprite)
     {
         image.sprite = sprite;
+    }
+
+    public void SetBuildName(string name)
+    {
+        buildName = name;
     }
 
     public void SetResourceCost(Resource resource)
