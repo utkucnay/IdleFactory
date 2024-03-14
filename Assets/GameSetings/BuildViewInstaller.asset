@@ -17,11 +17,7 @@ MonoBehaviour:
     minScaleBuildFactor: 0.03
     maxScaleBuildFreq: 0.32
     maxScaleBuildFactor: 0.05
-    minVibrationProgressBarFreq: 0
-    minVibrationProgressBarFactor: 0
-    maxVibrationProgressBarFreq: 0
-    maxVibrationProgressBarFactor: 0
-    curve:
+    scaleBuildcurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -34,14 +30,14 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.99640167
-        value: 0.23883937
-        inSlope: 0.7738222
-        outSlope: 0.7738222
+        time: 0.9638551
+        value: 0.13483635
+        inSlope: 0.4933462
+        outSlope: 0.4933462
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 1
+        inWeight: 0.07777751
+        outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
         value: 1
@@ -56,3 +52,10 @@ MonoBehaviour:
       m_RotationOrder: 4
     goldParticlePrefab: {fileID: 9151164905507624921, guid: f1c5c4d6ae57706439d51fc6057fbe63, type: 3}
     gemParticlePrefab: {fileID: 5816087474930064012, guid: 695e30524db94be428212deab1e60a16, type: 3}
+    minParticleDistance: 80
+    maxParticleDistance: 95
+    exploseParticeDuration: 0.1
+    exploseParticeEase: 0
+    transitionWait: 0.15
+    moveResourceDuration: 1.2
+    moveResourceEase: 6

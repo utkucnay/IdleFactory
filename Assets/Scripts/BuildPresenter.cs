@@ -115,7 +115,7 @@ public class BuildPresenter : ITickable
 
     private void ProceduralBuildAnimation(float scaleRatio, BuildView buildView, BuildProp buildProp)
     {
-        var scaleEvaluatedRatio = BuildViewAnimation.curve.Evaluate(scaleRatio);
+        var scaleEvaluatedRatio = BuildViewAnimation.scaleBuildcurve.Evaluate(scaleRatio);
         var scaleFreq = Mathf.Lerp(BuildViewAnimation.minScaleBuildFreq, BuildViewAnimation.maxScaleBuildFreq, scaleEvaluatedRatio);
         var scaleFactor = Mathf.Lerp(BuildViewAnimation.minScaleBuildFactor, BuildViewAnimation.maxScaleBuildFactor, scaleEvaluatedRatio);
         var scale = Mathf.Sin((Time.time + buildProp.seed) * scaleFreq) * scaleFactor;
@@ -150,9 +150,10 @@ public class BuildPresenter : ITickable
                     },
                     buildView.transform.position, shopPresenter.GemViewTransform.transform.position);
             }
-        });
-        seq.AppendCallback(onEnd);
-        seq.Append(buildView.transform.DOScale(1, .1f));
+        })
+        .AppendCallback(onEnd)
+        .Append(buildView.transform.DOScale(1, .1f))
+        ;
     }
 
     private void ParticleAnimation(GameObject prefab, TweenCallback onEnd,
@@ -160,14 +161,14 @@ public class BuildPresenter : ITickable
     {
         var go = GameObject.Instantiate(prefab, spawnPos, Quaternion.identity, canvas.transform);
         var pos = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
-        pos = pos.normalized * UnityEngine.Random.Range(80f, 95f);
+        pos = pos.normalized * UnityEngine.Random.Range(BuildViewAnimation.minParticleDistance, BuildViewAnimation.maxParticleDistance);
 
         DOTween.Sequence()
-        .Append(go.transform.DOMove(pos, .1f).SetRelative(true))
-        .AppendInterval(.15f)
-        .Append(go.transform.DOJump(targetPos, 1, 1, 1.2f).SetEase(Ease.OutQuad))
+        .Append(go.transform.DOMove(pos, BuildViewAnimation.exploseParticeDuration).SetRelative(true).SetEase(BuildViewAnimation.exploseParticeEase))
+        .AppendInterval(BuildViewAnimation.transitionWait)
+        .Append(go.transform.DOJump(targetPos, 1, 1, BuildViewAnimation.moveResourceDuration).SetEase(BuildViewAnimation.moveResourceEase))
         .AppendCallback(() => GameObject.Destroy(go.gameObject))
-        .OnComplete(onEnd);
+        .OnComplete(onEnd)
         ;
     }
 

@@ -21,4 +21,4 @@ MonoBehaviour:
   resourceGain:
     gold: 1
     gem: 2
-  buildPrefab: {fileID: 5966417436254858224, guid: 9a7016d75681c9d40a25c843c7ef78cf, type: 3}
+  buildPrefab: {fileID: 5408894915903133826, guid: 1aa69d3017d813148a1aeede14928028, type: 3}

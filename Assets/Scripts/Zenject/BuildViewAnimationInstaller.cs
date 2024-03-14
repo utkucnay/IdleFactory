@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using Zenject;
 
@@ -11,16 +12,22 @@ public class BuildViewAnimation
     public float maxScaleBuildFreq;
     public float maxScaleBuildFactor;
 
-    public float minVibrationProgressBarFreq;
-    public float minVibrationProgressBarFactor;
+    public AnimationCurve scaleBuildcurve;
 
-    public float maxVibrationProgressBarFreq;
-    public float maxVibrationProgressBarFactor;
-
-    public AnimationCurve curve;
-
+    [Header("Particle")]
     public GameObject goldParticlePrefab;
     public GameObject gemParticlePrefab;
+
+    public float minParticleDistance;
+    public float maxParticleDistance;
+
+    public float exploseParticeDuration;
+    public Ease exploseParticeEase;
+
+    public float transitionWait;
+
+    public float moveResourceDuration;
+    public Ease moveResourceEase;
 }
 
 [CreateAssetMenu(fileName = "BuildViewInstaller", menuName = "Installers/BuildViewInstaller")]
