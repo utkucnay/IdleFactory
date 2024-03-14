@@ -3598,6 +3598,8 @@ GameObject:
   - component: {fileID: 1536406559}
   - component: {fileID: 1536406558}
   - component: {fileID: 1536406557}
+  - component: {fileID: 1536406560}
+  - component: {fileID: 1536406561}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -3707,6 +3709,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536406555}
   m_CullTransparentMesh: 1
+--- !u!114 &1536406560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536406555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf01ef1f99fe6f40b533831bc6463fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  restartButton: {fileID: 1536406557}
+--- !u!114 &1536406561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536406555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - {fileID: 1536406560}
+  _identifier: 
+  _useSceneContext: 1
+  _context: {fileID: 0}
+  _bindType: 0
 --- !u!1001 &1627280816
 PrefabInstance:
   m_ObjectHideFlags: 0

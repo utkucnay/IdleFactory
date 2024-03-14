@@ -17,7 +17,13 @@ public class ResourceModel
     private Resource maxResource = new Resource() { gold = 999, gem = 999 };
     private Resource minResource = new Resource() { gold = 0, gem = 0 };
 
-    public Resource CurrentResource { get => currentResource; }
+    public Resource CurrentResource { get => currentResource; set 
+        {
+            currentResource = value;
+            currentResource.gold = Mathf.Clamp(currentResource.gold, minResource.gold, maxResource.gold);
+            currentResource.gem = Mathf.Clamp(currentResource.gem, minResource.gem, maxResource.gem);
+            UpdateResource();
+        } }
     public Resource MaxResource { get => maxResource; }
     public Resource MinResource { get => minResource; }
 

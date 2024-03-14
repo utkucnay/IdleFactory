@@ -15,5 +15,6 @@ public class GameInstaller : MonoInstaller
         Container.Bind<EventSystem>().FromComponentInHierarchy().AsSingle();
         Container.Bind<GraphicRaycaster>().FromComponentInHierarchy().AsSingle();
         Container.BindInterfacesAndSelfTo<BuildPresenter>().AsSingle().NonLazy();
+        Container.BindInterfacesAndSelfTo<SaveLoad>().AsSingle().NonLazy();
     }
 }

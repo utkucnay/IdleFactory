@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 public class GamePresenter : Zenject.IInitializable
@@ -12,6 +11,11 @@ public class GamePresenter : Zenject.IInitializable
     ShopPresenter shopPresenter;
     TilePresenter tilePresenter;
     BuildPresenter buildPresenter;
+
+    //View
+    [Inject] RestartView restartView;
+
+    [Inject] SaveLoad saveLoad;
 
     IDragAndDrop dragAndDrop;
 
@@ -30,7 +34,9 @@ public class GamePresenter : Zenject.IInitializable
         shopPresenter.DragEnd += OnDragEnd;  
 
         shopPresenter.PointerEnter += OnPointerEnter;  
-        shopPresenter.PointerExit += OnPointerExit;  
+        shopPresenter.PointerExit += OnPointerExit;
+
+        restartView.Click += OnGameRestart;
     }
 
     public void OnDragBegin(CardView cardView, PointerEventData eventData)
@@ -61,5 +67,12 @@ public class GamePresenter : Zenject.IInitializable
     {
         if(dragAndDrop != null) return;
         cardView.ScaleNormal();
+    }
+
+    public void OnGameRestart() 
+    {
+        saveLoad.Clear();
+        tilePresenter.Clear();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -8,7 +8,7 @@ using Zenject;
 
 public class BuildProp 
 {
-    public static event Action<BuildProp> ChangedProgress;
+    public event Action<BuildProp> ChangedProgress;
 
     public BuildProp(string sName)
     {
@@ -35,12 +35,14 @@ public class BuildPresenter : ITickable
     List<BuildProp> buildProps;
 
     public BuildViewAnimation BuildViewAnimation { get; private set; }
+    public List<BuildView> BuildViews => buildViews;
+    public List<BuildProp> BuildProps => buildProps;
 
     Canvas canvas;
 
     public BuildPresenter(BuildModels6 buildModels6, Canvas canvas, BuildViewAnimation buildViewAnimation)
     {
-        buildModels = new()
+       buildModels = new()
         {
             { buildModels6.buildModel1.SName, buildModels6.buildModel1 },
             { buildModels6.buildModel2.SName, buildModels6.buildModel2 },
@@ -56,7 +58,6 @@ public class BuildPresenter : ITickable
         buildProps = new();
         BuildViewAnimation = buildViewAnimation;
 
-        BuildProp.ChangedProgress += OnChangedProgress;
     }
 
     public GameObject GetPrefab(string name)
@@ -69,14 +70,21 @@ public class BuildPresenter : ITickable
         return buildModels[name].ResourceCost;
     }
 
-    public GameObject Build(string buildName, in Vector3 pos)
+    public GameObject Build(string buildName, in Vector3 pos, bool isBuy = true)
     {
         var go = GameObject.Instantiate(GetPrefab(buildName), pos, Quaternion.identity, canvas.transform);
 
-        var cost = GetResourceCost(buildName);
-        shopPresenter.AddResource(-cost.gold, -cost.gem);
+        if (isBuy)
+        {
+            var cost = GetResourceCost(buildName);
+            shopPresenter.AddResource(-cost.gold, -cost.gem);
+        }
+
         buildViews.Add(go.GetComponent<BuildView>());
-        buildProps.Add(new BuildProp(buildName));
+
+        var buildProp = new BuildProp(buildName);
+        buildProp.ChangedProgress += OnChangedProgress;
+        buildProps.Add(buildProp);
         return go;
     }
 

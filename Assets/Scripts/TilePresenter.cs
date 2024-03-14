@@ -4,6 +4,7 @@ using Zenject;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using ModestTree;
 
 public class TilePresenter : IInitializable
 {
@@ -28,6 +29,11 @@ public class TilePresenter : IInitializable
     public void Initialize()
     {
 
+    }
+
+    public Tile GetTileIndex(int index)
+    {
+        return tileModel.tiles[index];
     }
 
     public bool IsValidTile(in Vector3 pos, out Tile tile) 
@@ -78,9 +84,9 @@ public class TilePresenter : IInitializable
         if(set.Count >= buildTile.GetCount()) { isCtor = true; return; }
     }
 
-    public void CreateBuild(string buildName, Tile tile) 
+    public void CreateBuild(string buildName, Tile tile, bool isBuy = true) 
     {
-        var go = buildPresenter.Build(buildName, tile.transform.position);
+        var go = buildPresenter.Build(buildName, tile.transform.position, isBuy);
         
         BuildTile buildTile = go.GetComponent<BuildView>().MainTile;
         HashSet<BuildTile> set = new();
@@ -98,5 +104,31 @@ public class TilePresenter : IInitializable
         if (buildTile.Down != null && !set.Contains(buildTile.Down as BuildTile)) CreateBuildRec(set, buildTile.Down as BuildTile, tile.Down);
         if (buildTile.Left != null && !set.Contains(buildTile.Left as BuildTile)) CreateBuildRec(set, buildTile.Left as BuildTile, tile.Left);
         if (buildTile.Right != null && !set.Contains(buildTile.Right as BuildTile)) CreateBuildRec(set, buildTile.Right as BuildTile, tile.Right);
+    }
+
+    public List<System.Tuple<string, int>> GetSaveData()
+    {
+        List<System.Tuple<string, int>> ret = new();
+        for (int i = 0; i < buildPresenter.BuildViews.Count; i++)
+        { 
+            var buildView = buildPresenter.BuildViews[i];
+            var buildProp = buildPresenter.BuildProps[i];
+
+            var buildName = buildProp.sName;
+
+            Tile tile;
+            IsValidTile(buildView.MainTile.transform.position, out tile);
+            var index = tileModel.tiles.IndexOf(tile);
+
+            ret.Add(new System.Tuple<string, int>(buildName, index));
+        }
+
+        return ret;
+    }
+
+    public void Clear() 
+    {
+        buildPresenter.BuildViews.Clear();
+        buildPresenter.BuildProps.Clear();
     }
 }
