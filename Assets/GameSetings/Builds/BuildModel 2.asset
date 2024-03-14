@@ -17,7 +17,7 @@ MonoBehaviour:
   resourceCost:
     gold: 0
     gem: 3
-  resourceGenerationDuration: 5
+  resourceGenerationDuration: 10
   resourceGain:
     gold: 1
     gem: 0

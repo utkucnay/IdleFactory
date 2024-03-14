@@ -78,10 +78,11 @@ public class TilePresenter : IInitializable
         if(set.Count >= buildTile.GetCount()) { isCtor = true; return; }
     }
 
-    public void CreateBuild(string buildName, BuildTile buildTile, Tile tile) 
+    public void CreateBuild(string buildName, Tile tile) 
     {
-        buildPresenter.Build(buildName, tile.transform.position);
-
+        var go = buildPresenter.Build(buildName, tile.transform.position);
+        
+        BuildTile buildTile = go.GetComponent<BuildView>().MainTile;
         HashSet<BuildTile> set = new();
         CreateBuildRec(set, buildTile, tile);
     }

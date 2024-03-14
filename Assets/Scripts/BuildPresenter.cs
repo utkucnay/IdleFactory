@@ -69,7 +69,7 @@ public class BuildPresenter : ITickable
         return buildModels[name].ResourceCost;
     }
 
-    public void Build(string buildName, in Vector3 pos)
+    public GameObject Build(string buildName, in Vector3 pos)
     {
         var go = GameObject.Instantiate(GetPrefab(buildName), pos, Quaternion.identity, canvas.transform);
 
@@ -77,6 +77,7 @@ public class BuildPresenter : ITickable
         shopPresenter.AddResource(-cost.gold, -cost.gem);
         buildViews.Add(go.GetComponent<BuildView>());
         buildProps.Add(new BuildProp(buildName));
+        return go;
     }
 
     public void Tick()

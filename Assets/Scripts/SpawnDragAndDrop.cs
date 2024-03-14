@@ -59,7 +59,7 @@ public class SpawnDragAndDrop : IDragAndDrop
         {
             if (tilePresenter.IsConstructable(buildView.MainTile, tile))
             {
-                tilePresenter.CreateBuild(buildName, buildView.MainTile, tile);
+                tilePresenter.CreateBuild(buildName, tile);
             }
         }
 
