@@ -688,7 +688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08053af0e29ead2409d16fa96df68d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 1054828314121083722}
+  cardImage: {fileID: 1054828314121083722}
   gemGO: {fileID: 7056498759507866592}
   columnGO: {fileID: 1858816187593833611}
   goldGO: {fileID: 2691409253178946466}

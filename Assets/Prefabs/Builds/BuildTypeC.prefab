@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 1f6495f86c6e9e54384c23a0fb669210, type: 2}
   m_Color: {r: 0.35989982, g: 0.8396226, b: 0.31287822, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 1f6495f86c6e9e54384c23a0fb669210, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -242,6 +242,7 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 2335239509194508602}
+  isEmpty: 0
 --- !u!1 &4468673856984984301
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,6 +420,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildTilePrefab: {fileID: 1691902569064421118, guid: 133ae26afab41d34ea40d520418a3661, type: 3}
   mainTile: {fileID: 7721533575775238659}
+  images: []
+  progressionBar: {fileID: 6347365055752628814}
 --- !u!1 &5642264054534987479
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,6 +553,7 @@ MonoBehaviour:
   down: {fileID: 7721533575775238659}
   left: {fileID: 0}
   right: {fileID: 8374420108451836661}
+  isEmpty: 0
 --- !u!1 &6491399208884436215
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,6 +646,7 @@ MonoBehaviour:
   down: {fileID: 2335239509194508602}
   left: {fileID: 4604451131298807742}
   right: {fileID: 0}
+  isEmpty: 0
 --- !u!1 &8607638423656627989
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,3 +739,4 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 7721533575775238659}
   right: {fileID: 0}
+  isEmpty: 0

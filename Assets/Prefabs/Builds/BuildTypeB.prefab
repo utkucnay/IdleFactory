@@ -219,6 +219,7 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 3933228441035997980}
   right: {fileID: 0}
+  isEmpty: 0
 --- !u!1 &5357722652792721105
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 1f6495f86c6e9e54384c23a0fb669210, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -346,6 +347,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildTilePrefab: {fileID: 1691902569064421118, guid: 133ae26afab41d34ea40d520418a3661, type: 3}
   mainTile: {fileID: 3933228441035997980}
+  images: []
+  progressionBar: {fileID: 4322602015648369588}
 --- !u!1 &7450710156245302380
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,7 +375,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7450710156245302380}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -403,7 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 1f6495f86c6e9e54384c23a0fb669210, type: 2}
   m_Color: {r: 0.35989982, g: 0.8396226, b: 0.31287822, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -549,6 +552,7 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 9007805537699374357}
+  isEmpty: 0
 --- !u!1 &8714911075347445873
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,3 +645,4 @@ MonoBehaviour:
   down: {fileID: 3933228441035997980}
   left: {fileID: 0}
   right: {fileID: 0}
+  isEmpty: 0

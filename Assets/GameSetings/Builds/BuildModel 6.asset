@@ -15,10 +15,10 @@ MonoBehaviour:
   sName: Flag
   image: {fileID: 21300000, guid: 4bef0757f4253fc4e97b3fcd91d870c4, type: 3}
   resourceCost:
-    gold: 3
-    gem: 2
-  resourceGenerationDuration: 2
+    gold: 11
+    gem: 11
+  resourceGenerationDuration: 40
   resourceGain:
-    gold: 0
-    gem: 0
+    gold: 4
+    gem: 3
   buildPrefab: {fileID: 5408894915903133826, guid: 1aa69d3017d813148a1aeede14928028, type: 3}

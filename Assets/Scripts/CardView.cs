@@ -18,12 +18,15 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private CardViewAnimation cvAnimation;
     private string buildName;
-    [SerializeField] private Image image;
+    [SerializeField] private Image cardImage;
     [SerializeField] private GameObject gemGO;
     [SerializeField] private GameObject columnGO;
     [SerializeField] private GameObject goldGO;
     [SerializeField] private TextMeshProUGUI gemReq;
     [SerializeField] private TextMeshProUGUI goldReq;
+    private Image viewImage;
+
+    bool interactable = true;
 
     public string BuildName => buildName;
 
@@ -33,29 +36,39 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         this.cvAnimation = cardViewAnimation;
     }
 
+    private void Awake()
+    {
+        viewImage = GetComponent<Image>();
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
-        DragBegin?.Invoke(this, eventData);
+        if(interactable)
+            DragBegin?.Invoke(this, eventData);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        Drag?.Invoke(this, eventData);
+        if(interactable)
+            Drag?.Invoke(this, eventData);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        DragEnd?.Invoke(this, eventData); 
+        if(interactable)
+            DragEnd?.Invoke(this, eventData); 
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        PointerEnter?.Invoke(this);
+        if(interactable)    
+            PointerEnter?.Invoke(this);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        PointerExit?.Invoke(this);
+        if(interactable)
+            PointerExit?.Invoke(this);
     }
 
     public void ScaleUp()
@@ -70,7 +83,7 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void SetSprite(Sprite sprite)
     {
-        image.sprite = sprite;
+        cardImage.sprite = sprite;
     }
 
     public void SetBuildName(string name)
@@ -96,15 +109,20 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
     }
 
-    public void SetActive(bool active)
+    public void SetIntractable(bool interactable)
     {
-        if(active)
+        this.interactable = interactable;
+        if(interactable)
         {
-
+            var color = viewImage.color;
+            color.a = 1;
+            viewImage.color = color;
         }
         else
         {
-
+            var color = viewImage.color;
+            color.a = .55f;
+            viewImage.color = color;
         }
     }
 }

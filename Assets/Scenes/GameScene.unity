@@ -229,6 +229,7 @@ MonoBehaviour:
   _scriptableObjectInstallers:
   - {fileID: 11400000, guid: f27124a09a4980f47b42ef9457fef959, type: 2}
   - {fileID: 11400000, guid: 5b0b22ebbbc5afb448ffda7c34ae8f0f, type: 2}
+  - {fileID: 11400000, guid: 90d759481a2a48d4088352f65a177974, type: 2}
   _monoInstallers:
   - {fileID: 154989467}
   _installerPrefabs: []
@@ -2290,7 +2291,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1

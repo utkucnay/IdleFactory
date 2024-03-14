@@ -16,9 +16,9 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: f9a344caf82c50f48a64da04f6aa1c21, type: 3}
   resourceCost:
     gold: 3
-    gem: 2
-  resourceGenerationDuration: 2
+    gem: 10
+  resourceGenerationDuration: 30
   resourceGain:
-    gold: 0
-    gem: 0
+    gold: 1
+    gem: 3
   buildPrefab: {fileID: 5408894915903133826, guid: 1aa69d3017d813148a1aeede14928028, type: 3}

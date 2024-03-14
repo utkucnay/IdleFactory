@@ -11,43 +11,20 @@ public class GamePresenter : Zenject.IInitializable
     //Presenter
     ShopPresenter shopPresenter;
     TilePresenter tilePresenter;
-
-    //Model
-    ResourceModel resourceModel;
-    //View
-    ResourceView resourceView;
+    BuildPresenter buildPresenter;
 
     IDragAndDrop dragAndDrop;
-    Dictionary<string, BuildModel> buildModels;
 
-    public GamePresenter(ResourceView resourceView, ResourceModel resourceModel, 
-        ShopPresenter shopPresenter, TilePresenter tilePresenter, BuildModels6 buildModels6)
+    public GamePresenter( 
+        ShopPresenter shopPresenter, TilePresenter tilePresenter, BuildPresenter buildPresenter)
     {
-        this.resourceView = resourceView;
-        this.resourceModel = resourceModel;
         this.shopPresenter = shopPresenter; 
         this.tilePresenter = tilePresenter;
-
-        buildModels = new();
-        buildModels.Add(buildModels6.buildModel1.SName, buildModels6.buildModel1);
-        buildModels.Add(buildModels6.buildModel2.SName, buildModels6.buildModel2);
-        buildModels.Add(buildModels6.buildModel3.SName, buildModels6.buildModel3);
-        buildModels.Add(buildModels6.buildModel4.SName, buildModels6.buildModel4);
-        buildModels.Add(buildModels6.buildModel5.SName, buildModels6.buildModel5);
-        buildModels.Add(buildModels6.buildModel6.SName, buildModels6.buildModel6);
-
-    }
-
-    private void OnResourceChanged() 
-    {
-        resourceView.SetResource(resourceModel.CurrentResource);
+        this.buildPresenter = buildPresenter;
     }
 
     public void Initialize()
     {
-        resourceModel.ResourceChanged += OnResourceChanged;
-        OnResourceChanged();  
-
         shopPresenter.DragBegin += OnDragBegin;  
         shopPresenter.Drag += OnDrag;  
         shopPresenter.DragEnd += OnDragEnd;  
@@ -58,7 +35,7 @@ public class GamePresenter : Zenject.IInitializable
 
     public void OnDragBegin(CardView cardView, PointerEventData eventData)
     {
-        dragAndDrop = new SpawnDragAndDrop(buildModels[cardView.BuildName].BuildPrefab, tilePresenter);
+        dragAndDrop = new SpawnDragAndDrop(cardView.BuildName, buildPresenter.GetPrefab(cardView.BuildName), tilePresenter);
         dragAndDrop.OnDragBegin(eventData);
     }
 

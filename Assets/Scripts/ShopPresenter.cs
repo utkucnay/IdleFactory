@@ -16,28 +16,54 @@ public class ShopPresenter : MonoBehaviour
     public event Action<CardView> PointerExit;
 
     //Models
-    ResourceModel goldModel;
+    [Inject] ResourceModel resourceModel;
+
+    [Inject] BuildPresenter buildPresenter;
 
     //Views
-    CardView[] cardView;
+    CardView[] cardViews;
+    [Inject] ResourceView resourceView;
 
-    [Inject()]
+    public Transform GoldViewTransform => resourceView.GoldView.transform;
+    public Transform GemViewTransform => resourceView.GemView.transform;
+
+    [Inject]
     private void Inject(BuildModels6 buildModels) 
     {
-        cardView = GetComponentsInChildren<CardView>();    
+        cardViews = GetComponentsInChildren<CardView>();    
 
-        SetCardViewData(cardView[0], buildModels.buildModel1);
-        SetCardViewData(cardView[1], buildModels.buildModel2);
-        SetCardViewData(cardView[2], buildModels.buildModel3);
-        SetCardViewData(cardView[3], buildModels.buildModel4);
-        SetCardViewData(cardView[4], buildModels.buildModel5);
-        SetCardViewData(cardView[5], buildModels.buildModel6);
+        SetCardViewData(cardViews[0], buildModels.buildModel1);
+        SetCardViewData(cardViews[1], buildModels.buildModel2);
+        SetCardViewData(cardViews[2], buildModels.buildModel3);
+        SetCardViewData(cardViews[3], buildModels.buildModel4);
+        SetCardViewData(cardViews[4], buildModels.buildModel5);
+        SetCardViewData(cardViews[5], buildModels.buildModel6);
     }
 
     private void Start() 
     {
-        for(int i = 0; i < cardView.Length; i++)
-            SetCardViewEvents(cardView[i]);
+        for(int i = 0; i < cardViews.Length; i++)
+            SetCardViewEvents(cardViews[i]);
+
+        resourceModel.ResourceChanged += OnResourceChanged;
+        OnResourceChanged();
+    }
+
+    private void OnResourceChanged()
+    {
+        resourceView.SetResource(resourceModel.CurrentResource);
+        foreach (var cardView in cardViews)
+        {
+            var resCost = buildPresenter.GetResourceCost(cardView.BuildName);
+            cardView.SetIntractable(
+                resourceModel.CurrentResource.gold >= resCost.gold
+                & resourceModel.CurrentResource.gem >= resCost.gem);
+        }
+    }
+
+    public void AddResource(int gold, int gem) 
+    {
+        resourceModel.IncreaseResource(new Resource() { gold = gold, gem = gem }); 
     }
 
     private void SetCardViewData(CardView cardView, BuildModel buildModel)

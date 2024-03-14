@@ -8,6 +8,9 @@ public class ResourceView : MonoBehaviour
     [SerializeField] TextMeshProUGUI goldView;
     [SerializeField] TextMeshProUGUI gemView;
 
+    public TextMeshProUGUI GoldView => goldView;
+    public TextMeshProUGUI GemView => gemView;
+
     public void SetResource(in Resource resource)
     {
         goldView.text = resource.gold.ToString();

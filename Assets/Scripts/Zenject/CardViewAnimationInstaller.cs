@@ -13,7 +13,7 @@ public class CardViewAnimation
 }
 
 [CreateAssetMenu(fileName = "CardViewInstaller", menuName = "Installers/CardViewInstaller")]
-public class CardViewInstaller : ScriptableObjectInstaller<CardViewInstaller>
+public class CardViewAnimationInstaller : ScriptableObjectInstaller<CardViewAnimationInstaller>
 {
     [SerializeField] CardViewAnimation cardViewAnimation;
 
